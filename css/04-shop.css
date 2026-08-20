@@ -1,7 +1,7 @@
-/* ═══ BLOC 4 — BOUTIQUE
-   4.1 carte · 4.2 prix & inflation · 4.3 bouton acheter ═══ */
+/* ═══ BLOCK 4 — SHOP
+   4.1 card · 4.2 pricing & inflation · 4.3 buy button ═══ */
 
-/* 4.1 */
+/* 4.1 — reward card */
 .shop-card {
     background: var(--bg-card); border-radius: 12px; padding: 16px 18px;
     margin-bottom: 8px; display: flex; align-items: center; gap: 14px;
@@ -17,7 +17,7 @@
 .shop-info { flex: 1; }
 .shop-name { font-size: 14px; color: var(--text-body); font-weight: 500; }
 
-/* 4.2 */
+/* 4.2 — price, struck-through base price, stock, inflation badge */
 .shop-price { color: var(--gold); font-size: 12px; margin-top: 3px; font-weight: 400; }
 .shop-price-old { color: var(--text-light); font-size: 11px; text-decoration: line-through; margin-right: 6px; }
 .shop-stock { font-size: 11px; color: var(--text-light); margin-top: 2px; }
@@ -25,7 +25,7 @@
 .price-up { color: var(--red); background: var(--mandatory-bg); }
 .price-down { color: var(--green); background: rgba(91,171,123,0.15); }
 
-/* 4.3 */
+/* 4.3 — buy button and sold-out state */
 .buy-btn {
     padding: 8px 18px; border-radius: 8px; border: 1.5px solid var(--gold);
     background: transparent; color: var(--gold); font-size: 12px;
