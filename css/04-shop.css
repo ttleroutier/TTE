@@ -1,0 +1,36 @@
+/* ═══ BLOC 4 — BOUTIQUE
+   4.1 carte · 4.2 prix & inflation · 4.3 bouton acheter ═══ */
+
+/* 4.1 */
+.shop-card {
+    background: var(--bg-card); border-radius: 12px; padding: 16px 18px;
+    margin-bottom: 8px; display: flex; align-items: center; gap: 14px;
+    border: 1px solid var(--border); transition: all 0.3s; backdrop-filter: blur(4px);
+}
+.shop-card:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+.shop-card.soldout { opacity: 0.4; }
+.shop-icon {
+    width: 44px; height: 44px; border-radius: 10px; background: var(--bg-icon);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700; color: var(--gold); flex-shrink: 0;
+}
+.shop-info { flex: 1; }
+.shop-name { font-size: 14px; color: var(--text-body); font-weight: 500; }
+
+/* 4.2 */
+.shop-price { color: var(--gold); font-size: 12px; margin-top: 3px; font-weight: 400; }
+.shop-price-old { color: var(--text-light); font-size: 11px; text-decoration: line-through; margin-right: 6px; }
+.shop-stock { font-size: 11px; color: var(--text-light); margin-top: 2px; }
+.price-change { font-size: 9px; padding: 1px 5px; border-radius: 3px; margin-left: 4px; font-weight: 700; }
+.price-up { color: var(--red); background: var(--mandatory-bg); }
+.price-down { color: var(--green); background: rgba(91,171,123,0.15); }
+
+/* 4.3 */
+.buy-btn {
+    padding: 8px 18px; border-radius: 8px; border: 1.5px solid var(--gold);
+    background: transparent; color: var(--gold); font-size: 12px;
+    font-weight: 600; cursor: pointer; transition: all 0.3s; letter-spacing: 0.5px;
+}
+.buy-btn:hover { background: var(--gold); color: #fff; }
+.buy-btn:disabled { border-color: var(--text-ghost); color: var(--text-faint); cursor: not-allowed; background: transparent; }
+.purchased-badge { color: var(--green); font-size: 12px; font-weight: 600; }
