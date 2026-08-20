@@ -1,7 +1,7 @@
-/* ═══ BLOC 3 — QUÊTES
-   3.1 filtres · 3.2 niveaux · 3.3 carte · 3.4 sous-tâches · 3.5 tags · 3.6 archive ═══ */
+/* ═══ BLOCK 3 — QUESTS
+   3.1 filters · 3.2 tiers · 3.3 quest card · 3.4 subtasks · 3.5 tags · 3.6 archive ═══ */
 
-/* 3.1 */
+/* 3.1 — category filter chips */
 .filter-bar { display: flex; gap: 6px; margin-bottom: 18px; overflow-x: auto; padding-bottom: 4px; -webkit-overflow-scrolling: touch; }
 .filter-bar::-webkit-scrollbar { display: none; }
 .filter-chip {
@@ -13,7 +13,7 @@
 .filter-chip:hover { border-color: var(--text-faint); color: var(--text-mid); }
 .filter-chip.active { background: var(--chip-active-bg); color: var(--chip-active-color); border-color: var(--chip-active-bg); }
 
-/* 3.2 */
+/* 3.2 — tier headers and locked banner */
 .level-section { margin-bottom: 24px; }
 .level-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
 .level-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--text-lighter); }
@@ -29,7 +29,7 @@
 .locked-banner .lock-icon { display: block; font-size: 16px; margin-bottom: 6px; color: var(--text-ghost); }
 .locked-detail { font-size: 11px; color: var(--text-faint); margin-top: 6px; }
 
-/* 3.3 */
+/* 3.3 — quest card, checkbox, meta, timer button */
 .quest-card {
     background: var(--bg-card); border-radius: 12px; padding: 14px 16px;
     margin-bottom: 8px; display: flex; align-items: flex-start;
@@ -49,6 +49,7 @@
 .quest-checkbox.done { border-color: var(--green); background: var(--green); }
 .quest-checkbox .check-svg { width: 14px; height: 14px; opacity: 0; transition: opacity 0.2s; }
 .quest-checkbox.done .check-svg { opacity: 1; }
+/* .auto = checklist quests: the box mirrors the subtasks and cannot be clicked */
 .quest-checkbox.auto { pointer-events: none; opacity: 0.5; }
 .quest-info { flex: 1; min-width: 0; }
 .quest-title { font-size: 14px; font-weight: 400; color: var(--text-body); }
@@ -63,7 +64,7 @@
 }
 .timer-btn:hover { color: var(--gold); border-color: var(--gold); }
 
-/* 3.4 */
+/* 3.4 — subtasks (inline list + editor chips) */
 .subtask-list { margin-top: 8px; padding-left: 40px; }
 .subtask-item { display: flex; align-items: center; gap: 8px; padding: 4px 0; }
 .subtask-cb {
@@ -85,7 +86,7 @@
 }
 .subtask-chip button { background: none; border: none; color: var(--red); cursor: pointer; font-size: 14px; line-height: 1; padding: 0; }
 
-/* 3.5 */
+/* 3.5 — quest type tags */
 .list-tag, .bonus-tag, .weekly-tag {
     font-size: 9px; font-weight: 700; letter-spacing: 0.5px;
     padding: 2px 7px; border-radius: 4px;
@@ -96,7 +97,7 @@
 body.dark-mode .list-tag { background: rgba(91,143,176,0.15); }
 body.dark-mode .weekly-tag { background: rgba(123,109,176,0.15); }
 
-/* 3.6 */
+/* 3.6 — one-time quest archive */
 .archive-card {
     background: var(--bg-card); border-radius: 12px; padding: 14px 16px;
     margin-bottom: 8px; display: flex; align-items: center; border: 1px solid var(--border);
