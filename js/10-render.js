@@ -13,7 +13,7 @@ function getCurrentPrice(item) {
     return item.price;
 }
 
-/* 18.1 — header: balance, title, level, XP bar, streak badge */
+/* 18.1 — header: balance, level, XP bar, streak badge */
 function updateCoins() {
     document.getElementById("coins-display").textContent = fmt(coins);
     document.getElementById("app-title").textContent = appTitle;
@@ -72,7 +72,7 @@ function renderQuests() {
         var lq = quests.filter(q => q.level === lv.num && filterByMode(q));
         if (activeFilter !== "All") lq = lq.filter(q => q.category === activeFilter);
         if (!lq.length) return;
-        lq.sort((a, b) => (b.bonus ? 1 : 0) - (a.bonus ? 1 : 0));      // bonus quests first
+        lq.sort((a, b) => (b.bonus ? 1 : 0) - (a.bonus ? 1 : 0));    // bonus quests on top
 
         var unlocked = isLevelUnlocked(lv.num);
         var isUnique = questMode === 'unique';
@@ -119,7 +119,7 @@ function renderQuests() {
                 }
                 html += '</div>';
 
-                if (!q.completed && !isList) {
+                if (!q.completed && !isList) {                 // Pomodoro shortcut
                     html += '<div class="quest-actions"><button class="timer-btn" onclick="promptStartTimer(' + q.id + ')" title="Start a timer">&#9719;</button></div>';
                 }
                 html += '</div>';
@@ -162,7 +162,7 @@ function renderShop() {
             (so ? '<span class="purchased-badge">Sold out</span>' : '<button class="buy-btn" onclick="buyItem(' + item.id + ')"' + (coins < currPrice ? ' disabled' : '') + '>Buy</button>') +
             '</div></div>';
     });
-    if (!h) h = '<div class="empty-state">No rewards.</div>';
+    if (!h) h = '<div class="empty-state">No rewards yet.</div>';
     container.innerHTML = h;
 }
 
@@ -236,7 +236,7 @@ function renderTracker() {
     var tb = shopItems.reduce((a, s) => a + s.bought, 0);
     [{l:"Tier 1 quests",v:stats.lv1},{l:"Tier 2 quests",v:stats.lv2},{l:"Tier 3 quests",v:stats.lv3},
      {l:"Total quests",v:stats.totalQuestsCompleted},{l:"Coins earned",v:fmt(stats.totalCoinsEarned)},
-     {l:"Coins spent",v:fmt(stats.totalCoinsSpent)},{l:"Purchases made",v:tb},{l:"Active days",v:td},
+     {l:"Coins spent",v:fmt(stats.totalCoinsSpent)},{l:"Purchases",v:tb},{l:"Active days",v:td},
      {l:"Required streak",v:mandatoryStreak + 'd'}
     ].forEach(m => h += '<div class="milestone-card"><div class="milestone-label">' + m.l + '</div><div class="milestone-value">' + m.v + '</div></div>');
     h += '</div>';
@@ -297,7 +297,6 @@ function renderSettings() {
     var c = document.getElementById("settings-content");
     var h = "";
 
-    // App preferences
     h += '<div class="settings-section"><div class="settings-section-title">Application</div>' +
         '<div class="form-group"><div class="toggle-row"><span class="toggle-label">Dark mode</span><div class="toggle '+(darkMode?'on':'')+'" onclick="toggleDarkMode()"></div></div></div>' +
         '<div class="form-group"><div class="toggle-row"><span class="toggle-label">Sounds</span><div class="toggle '+(soundEnabled?'on':'')+'" onclick="toggleSound()"></div></div></div>' +
@@ -306,39 +305,33 @@ function renderSettings() {
         '<input type="text" value="' + appTitle + '" readonly style="cursor:pointer" onclick="openModal(\'editTitle\')">' +
         '<button class="edit-btn" onclick="openModal(\'editTitle\')" style="flex-shrink:0">&#9998;</button></div></div></div>';
 
-    // Backup
     h += '<div class="settings-section"><div class="settings-section-title">Backup &amp; sharing</div>' +
         '<button class="action-btn primary" onclick="exportJSON()">Export (JSON)</button>' +
         '<button class="action-btn secondary" onclick="exportImage()" style="margin-top:6px">Export as image (PNG)</button>' +
         '<button class="action-btn danger" onclick="triggerImport()" style="margin-top:6px">Import (JSON)</button></div>';
 
-    // Pomodoro
     h += '<div class="settings-section"><div class="settings-section-title">Pomodoro timer</div>' +
         '<div class="form-group"><label>Default length (minutes)</label><div class="form-row">' +
         '<input type="number" value="'+defaultTimerMin+'" min="1" max="240" id="default-timer-input" onchange="defaultTimerMin = parseInt(this.value) || 25; save();">' +
         '</div></div></div>';
 
-    // Progression
     h += '<div class="settings-section"><div class="settings-section-title">Progression</div>' +
         '<div class="form-group"><label>Quests required to unlock the next tier</label><div class="coin-adjust">' +
         '<button class="coin-adjust-btn" onclick="adjustThreshold(-1)">-</button>' +
         '<div class="coin-value">' + unlockThreshold + '</div>' +
         '<button class="coin-adjust-btn" onclick="adjustThreshold(1)">+</button></div></div></div>';
 
-    // Balance
     h += '<div class="settings-section"><div class="settings-section-title">Balance</div>' +
         '<div class="form-group"><label>Adjust coins</label><div class="coin-adjust">' +
         '<button class="coin-adjust-btn" onclick="adjustCoins(-0.25)">-</button>' +
         '<div class="coin-value">' + fmt(coins) + '</div>' +
         '<button class="coin-adjust-btn" onclick="adjustCoins(0.25)">+</button></div></div></div>';
 
-    // Player level (read-only summary)
     h += '<div class="settings-section"><div class="settings-section-title">Player level</div>' +
         '<div class="form-group"><div class="edit-item-meta">Current level: <strong>' + playerLevel + ' (' + getTitle(playerLevel) + ')</strong><br>' +
         'XP: ' + Math.floor(playerXP) + ' / ' + getXpForLevel(playerLevel) + '<br>' +
         'Current multiplier: x' + getMultiplier() + ' (' + mandatoryStreak + ' days)</div></div></div>';
 
-    // Categories
     h += '<div class="settings-section"><div class="settings-section-title">Categories</div>';
     categories.forEach((cat, i) => {
         h += '<div class="edit-item"><div class="edit-item-info"><div class="edit-item-title"><span class="cat-tag cat-' + (i%6) + '">' + cat + '</span></div></div>' +
@@ -347,14 +340,12 @@ function renderSettings() {
     h += '<div class="form-group" style="margin-top:8px"><div class="form-row"><input type="text" id="new-cat-name" placeholder="New category"></div></div>' +
         '<button class="action-btn primary" onclick="addCategory()">Add</button></div>';
 
-    // Bonus pool
     h += '<div class="settings-section"><div class="settings-section-title">Bonus quest pool</div>' +
-        '<div class="form-group"><label>Candidate quests (1-2 drawn at random each day)</label>' +
+        '<div class="form-group"><label>Candidates (1-2 drawn at random each day)</label>' +
         '<div class="subtask-chips">' + bonusQuestPool.map((b,i) => '<span class="pool-chip">' + b + '<button onclick="removeBonusPool('+i+')">&times;</button></span>').join('') + '</div>' +
         '<div class="form-row" style="margin-top:8px"><input type="text" id="new-bonus-pool" placeholder="New bonus quest">' +
         '<button class="edit-btn" onclick="addBonusPool()" style="flex-shrink:0;margin-left:4px">+</button></div></div></div>';
 
-    // Add a quest
     var catOpts = categories.map(cat => '<option value="' + cat + '">' + cat + '</option>').join("");
     h += '<div class="settings-section"><div class="settings-section-title">Add a quest</div>' +
         '<div class="form-group"><div class="form-row"><input type="text" id="new-quest-title" placeholder="Quest name"></div></div>' +
@@ -372,7 +363,6 @@ function renderSettings() {
         '<button class="edit-btn" onclick="addNewSubtask()" style="flex-shrink:0;margin-left:4px">+</button></div></div></div>' +
         '<button class="action-btn primary" onclick="addQuest()">Add</button></div>';
 
-    // Quest lists
     var ln = { 1:"Tier 1", 2:"Tier 2", 3:"Tier 3" };
 
     h += '<div class="settings-section"><div class="settings-section-title">My daily quests</div>';
@@ -414,7 +404,6 @@ function renderSettings() {
     });
     h += '</div>';
 
-    // Shop management
     h += '<div class="settings-section"><div class="settings-section-title">Add a reward</div>' +
         '<div class="form-group"><div class="form-row"><input type="text" id="new-shop-name" placeholder="Name"></div></div>' +
         '<div class="form-group"><div class="form-row"><input type="number" id="new-shop-price" placeholder="Price" min="0" step="0.01">' +
