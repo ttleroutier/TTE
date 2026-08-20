@@ -215,7 +215,7 @@ class in `css/07-effects.css`.
 
 
 
-Publishing
+## Publishing
 mkdir tte && cd tte
 # create the files from parts 1-4
 git init && git add . && git commit -m "feat: TTE quest tracker, modular blocks 1-20"
