@@ -1,7 +1,7 @@
-/* ═══ BLOC 5 — TRACKER
-   5.1 sections · 5.2 séries · 5.3 milestones · 5.4 graphique · 5.5 badges ═══ */
+/* ═══ BLOCK 5 — TRACKER
+   5.1 sections · 5.2 streaks · 5.3 milestones · 5.4 chart · 5.5 badges ═══ */
 
-/* 5.1 */
+/* 5.1 — section headings */
 .tracker-section { margin-bottom: 24px; }
 .tracker-section-title {
     font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
@@ -9,7 +9,7 @@
     border-bottom: 1px solid var(--border);
 }
 
-/* 5.2 */
+/* 5.2 — per-quest streak cards */
 .streak-card {
     background: var(--bg-card); border-radius: 12px; padding: 16px 18px;
     margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between;
@@ -21,7 +21,7 @@
 .streak-count { font-size: 28px; font-weight: 300; color: var(--gold); min-width: 50px; text-align: right; }
 .streak-unit { font-size: 11px; color: var(--text-lighter); font-weight: 500; }
 
-/* 5.3 */
+/* 5.3 — milestone rows */
 .milestone-card {
     background: var(--bg-card); border-radius: 12px; padding: 18px; margin-bottom: 8px;
     border: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between;
@@ -29,7 +29,7 @@
 .milestone-label { font-size: 13px; color: var(--text-muted); }
 .milestone-value { font-size: 22px; font-weight: 300; color: var(--gold); }
 
-/* 5.4 */
+/* 5.4 — 30-day coin chart (pure CSS bars) */
 .graph-card { background: var(--bg-card); border-radius: 12px; padding: 16px; border: 1px solid var(--border); margin-bottom: 8px; }
 .graph-bars { display: flex; align-items: flex-end; height: 100px; gap: 1px; }
 .graph-bar-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; }
@@ -38,7 +38,7 @@
 .graph-labels { display: flex; justify-content: space-between; margin-top: 6px; font-size: 9px; color: var(--text-light); }
 .graph-info { display: flex; justify-content: space-between; font-size: 11px; color: var(--text-mid); margin-bottom: 8px; }
 
-/* 5.5 */
+/* 5.5 — badge grid */
 .badge-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 8px; }
 .badge-item {
     background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px;
