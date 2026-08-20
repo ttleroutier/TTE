@@ -1,14 +1,14 @@
-/* ═══ BLOC 2 — MISE EN PAGE
-   2.1 canvas & structure · 2.2 header, XP, série · 2.3 onglets ═══ */
+/* ═══ BLOCK 2 — LAYOUT
+   2.1 canvas & structure · 2.2 header, XP, streak · 2.3 tabs ═══ */
 
-/* 2.1 */
+/* 2.1 — backdrop layers and page shell */
 #bg-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
 .heat-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: 50; background: transparent; }
 .app-wrap { position: relative; z-index: 1; display: flex; flex-direction: column; min-height: 100vh; }
 .content { flex: 1; padding: 16px; padding-bottom: 40px; }
 .page { display: none; } .page.active { display: block; }
 
-/* 2.2 */
+/* 2.2 — header: balance, player level, XP bar, streak badge */
 .header {
     padding: 28px 24px 20px; text-align: center;
     background: var(--bg-header); border-bottom: 1px solid var(--border);
@@ -32,7 +32,7 @@
 }
 .streak-badge .mult { background: rgba(255,255,255,0.25); padding: 1px 6px; border-radius: 10px; font-size: 10px; }
 
-/* 2.3 */
+/* 2.3 — main tabs and quest sub-tabs */
 .tabs {
     display: flex; background: var(--bg-header); border-bottom: 1px solid var(--border);
     position: sticky; top: 0; z-index: 99; backdrop-filter: blur(8px);
