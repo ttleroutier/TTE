@@ -1,8 +1,8 @@
-/* ═══ BLOC 6 — FORMULAIRES & RÉGLAGES
-   6.1 sections · 6.2 champs · 6.3 boutons · 6.4 listes éditables
-   6.5 modale · 6.6 toggle · 6.7 catégories ═══ */
+/* ═══ BLOCK 6 — FORMS & SETTINGS
+   6.1 sections · 6.2 fields · 6.3 buttons · 6.4 editable lists
+   6.5 modal · 6.6 toggle · 6.7 category tags ═══ */
 
-/* 6.1 */
+/* 6.1 — settings section headings */
 .settings-section { margin-bottom: 28px; }
 .settings-section-title {
     font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
@@ -10,7 +10,7 @@
     border-bottom: 1px solid var(--border);
 }
 
-/* 6.2 */
+/* 6.2 — form groups, inputs, selects */
 .form-group {
     background: var(--bg-card); border-radius: 12px; padding: 14px 16px;
     margin-bottom: 10px; border: 1px solid var(--border);
@@ -29,7 +29,7 @@
 .form-row input { flex: 1; min-width: 80px; }
 .form-row select { width: 110px; }
 
-/* 6.3 */
+/* 6.3 — action buttons and +/- steppers */
 .action-btn {
     padding: 12px 20px; border-radius: 8px; border: none; font-size: 11px;
     font-weight: 700; cursor: pointer; letter-spacing: 1.5px; text-transform: uppercase;
@@ -51,7 +51,7 @@
 .coin-adjust-btn:hover { border-color: var(--gold); color: var(--gold); }
 .coin-value { font-size: 22px; font-weight: 300; color: var(--gold); min-width: 80px; text-align: center; }
 
-/* 6.4 */
+/* 6.4 — editable list rows (quests, shop items, categories, pool) */
 .edit-item {
     background: var(--bg-card); border-radius: 12px; padding: 14px 16px;
     margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between;
@@ -78,7 +78,7 @@
 .pool-chip button { background: none; border: none; color: var(--red); cursor: pointer; font-size: 14px; line-height: 1; padding: 0; }
 #file-input { display: none; }
 
-/* 6.5 */
+/* 6.5 — modal */
 .modal-overlay {
     position: fixed; top: 0; left: 0; right: 0; bottom: 0;
     background: var(--overlay); backdrop-filter: blur(4px);
@@ -103,7 +103,7 @@
 }
 .btn-cancel:hover { border-color: var(--text-faint); color: var(--text-mid); }
 
-/* 6.6 */
+/* 6.6 — toggle switch (state carried by the .on class) */
 .toggle-row { display: flex; align-items: center; justify-content: space-between; padding: 4px 0; }
 .toggle-label { font-size: 13px; color: var(--text-mid); }
 .toggle { width: 44px; height: 24px; border-radius: 12px; background: var(--text-ghost); position: relative; cursor: pointer; transition: background 0.3s; }
@@ -115,7 +115,7 @@
 }
 .toggle.on::after { transform: translateX(20px); }
 
-/* 6.7 */
+/* 6.7 — category tags, colour picked by index modulo 6 */
 .cat-tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 600; letter-spacing: 0.3px; }
 .cat-0 { background: #eef3ee; color: #5bab7b; }
 .cat-1 { background: #f3f0e6; color: #b8963e; }
