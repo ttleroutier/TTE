@@ -1,0 +1,112 @@
+/* ═══ BLOC 3 — QUÊTES
+   3.1 filtres · 3.2 niveaux · 3.3 carte · 3.4 sous-tâches · 3.5 tags · 3.6 archive ═══ */
+
+/* 3.1 */
+.filter-bar { display: flex; gap: 6px; margin-bottom: 18px; overflow-x: auto; padding-bottom: 4px; -webkit-overflow-scrolling: touch; }
+.filter-bar::-webkit-scrollbar { display: none; }
+.filter-chip {
+    padding: 7px 16px; border-radius: 20px; border: 1px solid var(--border);
+    background: var(--bg-card); color: var(--text-muted); font-size: 11px;
+    font-weight: 500; cursor: pointer; white-space: nowrap;
+    transition: all 0.3s; letter-spacing: 0.5px;
+}
+.filter-chip:hover { border-color: var(--text-faint); color: var(--text-mid); }
+.filter-chip.active { background: var(--chip-active-bg); color: var(--chip-active-color); border-color: var(--chip-active-bg); }
+
+/* 3.2 */
+.level-section { margin-bottom: 24px; }
+.level-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.level-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--text-lighter); }
+.level-line { flex: 1; height: 1px; background: var(--border); }
+.level-dot { width: 8px; height: 8px; border-radius: 50%; }
+.level-1 .level-dot { background: #5bab7b; }
+.level-2 .level-dot { background: #d4a843; }
+.level-3 .level-dot { background: #d45b5b; }
+.locked-banner {
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px;
+    padding: 18px; color: var(--text-lighter); font-size: 13px; text-align: center;
+}
+.locked-banner .lock-icon { display: block; font-size: 16px; margin-bottom: 6px; color: var(--text-ghost); }
+.locked-detail { font-size: 11px; color: var(--text-faint); margin-top: 6px; }
+
+/* 3.3 */
+.quest-card {
+    background: var(--bg-card); border-radius: 12px; padding: 14px 16px;
+    margin-bottom: 8px; display: flex; align-items: flex-start;
+    transition: all 0.3s; border: 1px solid var(--border); backdrop-filter: blur(4px);
+}
+.quest-card:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+.quest-card.completed { opacity: 0.4; }
+.quest-card.completed .quest-title { text-decoration: line-through; color: var(--text-lighter); }
+.quest-card.bonus { border-color: var(--gold); border-width: 2px; }
+.quest-checkbox {
+    width: 26px; height: 26px; border-radius: 8px;
+    border: 2px solid var(--cb-border); background: var(--cb-bg);
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: all 0.25s; flex-shrink: 0; margin-right: 14px; margin-top: 2px;
+}
+.quest-checkbox:hover { border-color: var(--text-light); }
+.quest-checkbox.done { border-color: var(--green); background: var(--green); }
+.quest-checkbox .check-svg { width: 14px; height: 14px; opacity: 0; transition: opacity 0.2s; }
+.quest-checkbox.done .check-svg { opacity: 1; }
+.quest-checkbox.auto { pointer-events: none; opacity: 0.5; }
+.quest-info { flex: 1; min-width: 0; }
+.quest-title { font-size: 14px; font-weight: 400; color: var(--text-body); }
+.quest-meta { display: flex; gap: 6px; align-items: center; margin-top: 4px; flex-wrap: wrap; }
+.quest-reward { color: var(--gold); font-size: 12px; font-weight: 500; }
+.quest-mandatory-tag { font-size: 9px; font-weight: 700; letter-spacing: 0.5px; color: var(--red); background: var(--mandatory-bg); padding: 2px 7px; border-radius: 4px; }
+.quest-actions { display: flex; gap: 4px; margin-left: 6px; }
+.timer-btn {
+    width: 28px; height: 28px; border-radius: 6px; border: 1px solid var(--border-input);
+    background: var(--bg-input); color: var(--text-mid); cursor: pointer;
+    display: flex; align-items: center; justify-content: center; font-size: 13px;
+}
+.timer-btn:hover { color: var(--gold); border-color: var(--gold); }
+
+/* 3.4 */
+.subtask-list { margin-top: 8px; padding-left: 40px; }
+.subtask-item { display: flex; align-items: center; gap: 8px; padding: 4px 0; }
+.subtask-cb {
+    width: 18px; height: 18px; border-radius: 5px;
+    border: 1.5px solid var(--cb-border); background: var(--cb-bg);
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s; flex-shrink: 0;
+}
+.subtask-cb.done { border-color: var(--green); background: var(--green); }
+.subtask-cb .check-svg { width: 10px; height: 10px; opacity: 0; }
+.subtask-cb.done .check-svg { opacity: 1; }
+.subtask-title { font-size: 12px; color: var(--text-mid); }
+.subtask-item.done .subtask-title { text-decoration: line-through; color: var(--text-lighter); }
+.subtask-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.subtask-chip {
+    display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px;
+    border-radius: 6px; background: var(--bg-icon); border: 1px solid var(--border);
+    font-size: 11px; color: var(--text-body);
+}
+.subtask-chip button { background: none; border: none; color: var(--red); cursor: pointer; font-size: 14px; line-height: 1; padding: 0; }
+
+/* 3.5 */
+.list-tag, .bonus-tag, .weekly-tag {
+    font-size: 9px; font-weight: 700; letter-spacing: 0.5px;
+    padding: 2px 7px; border-radius: 4px;
+}
+.list-tag { color: var(--blue); background: #e8f0f5; }
+.bonus-tag { color: #fff; background: linear-gradient(135deg, #b8963e, #d4b85e); }
+.weekly-tag { color: var(--purple); background: #eeedf5; }
+body.dark-mode .list-tag { background: rgba(91,143,176,0.15); }
+body.dark-mode .weekly-tag { background: rgba(123,109,176,0.15); }
+
+/* 3.6 */
+.archive-card {
+    background: var(--bg-card); border-radius: 12px; padding: 14px 16px;
+    margin-bottom: 8px; display: flex; align-items: center; border: 1px solid var(--border);
+}
+.archive-info { flex: 1; }
+.archive-title { font-size: 13px; color: var(--text-body); }
+.archive-meta { font-size: 11px; color: var(--text-light); margin-top: 3px; }
+.archive-cancel {
+    padding: 6px 14px; border-radius: 6px; border: 1px solid var(--red);
+    background: transparent; color: var(--red); font-size: 10px;
+    font-weight: 600; cursor: pointer; transition: all 0.2s; letter-spacing: 0.5px;
+}
+.archive-cancel:hover { background: var(--red); color: #fff; }
