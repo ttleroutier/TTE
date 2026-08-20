@@ -1,0 +1,76 @@
+/* ═══ BLOC 7 — EFFETS & COMPOSANTS FLOTTANTS
+   7.1 sélecteur de thème · 7.2 coming soon · 7.3 canicule
+   7.4 notification · 7.5 timer · 7.6 divers ═══ */
+
+/* 7.1 */
+.theme-grid { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
+.theme-option {
+    width: 70px; height: 50px; border-radius: 10px; border: 2px solid var(--border-input);
+    cursor: pointer; transition: all 0.3s; display: flex; align-items: center; justify-content: center;
+    font-size: 10px; font-weight: 600; letter-spacing: 0.5px;
+    color: #fff; text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+.theme-option:hover { transform: scale(1.05); }
+.theme-option.active { border-color: var(--gold); border-width: 3px; }
+.theme-winter { background: linear-gradient(135deg, #a8c8e8, #d4e5f7); }
+.theme-heat { background: linear-gradient(135deg, #e8a87c, #d45b5b); }
+.theme-autumn { background: linear-gradient(135deg, #d4a843, #c25d3a); }
+.theme-none { background: linear-gradient(135deg, #e8e8e3, #f5f5f0); color: #888; text-shadow: none; }
+
+/* 7.2 */
+.coming-soon-box {
+    background: var(--bg-card); border: 2px dashed var(--text-ghost); border-radius: 16px;
+    padding: 50px 24px; text-align: center; margin-top: 20px;
+}
+.coming-soon-title { font-size: 16px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--text-lighter); }
+.coming-soon-sub { font-size: 13px; color: var(--text-faint); margin-top: 10px; line-height: 1.6; }
+.coming-soon-icon { font-size: 40px; color: var(--text-ghost); margin-bottom: 16px; }
+.pixel-preview {
+    width: 64px; height: 64px; border-radius: 8px; image-rendering: pixelated;
+    object-fit: contain; background: var(--bg-icon); border: 1px solid var(--border);
+}
+
+/* 7.3 */
+.heat-active .app-wrap { animation: heatDistort 0.4s ease-in-out infinite alternate; }
+.heat-active .quest-title, .heat-active .shop-name, .heat-active .header h1,
+.heat-active .coins-display, .heat-active .milestone-label,
+.heat-active .streak-title, .heat-active .edit-item-title {
+    animation: heatText 0.8s ease-in-out infinite alternate;
+}
+@keyframes heatDistort { 0% { transform: skewY(0deg); } 100% { transform: skewY(0.15deg); } }
+@keyframes heatText {
+    0% { transform: translateY(0) scaleY(1); }
+    25% { transform: translateY(0.5px) scaleY(1.005); }
+    50% { transform: translateY(-0.3px) scaleY(0.997); }
+    75% { transform: translateY(0.8px) scaleY(1.003); }
+    100% { transform: translateY(-0.5px) scaleY(0.998); }
+}
+
+/* 7.4 */
+.notification {
+    position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+    background: var(--notif-bg); border: 1px solid var(--border); color: var(--text-body);
+    padding: 12px 28px; border-radius: 10px; font-size: 13px; font-weight: 500;
+    z-index: 200; opacity: 0; transition: opacity 0.3s; pointer-events: none;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+.notification.show { opacity: 1; }
+
+/* 7.5 */
+.timer-overlay {
+    position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+    background: var(--modal-bg); border: 1px solid var(--gold); border-radius: 12px;
+    padding: 14px 20px; z-index: 150; display: flex; align-items: center; gap: 14px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15); max-width: 90%;
+}
+.timer-overlay .t-info { flex: 1; min-width: 0; }
+.timer-overlay .t-quest { font-size: 11px; color: var(--text-light); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.timer-overlay .t-time { font-size: 22px; font-weight: 300; color: var(--gold); font-variant-numeric: tabular-nums; }
+.timer-overlay .t-cancel {
+    padding: 6px 12px; border-radius: 6px; border: 1px solid var(--red);
+    background: transparent; color: var(--red); font-size: 10px;
+    font-weight: 600; cursor: pointer;
+}
+
+/* 7.6 */
+.empty-state { text-align: center; padding: 30px; color: var(--text-faint); font-size: 13px; font-style: italic; }
