@@ -212,3 +212,12 @@ class in `css/07-effects.css`.
 - ❌ Adding a quest field without a migration in `js/03-state.js` → `undefined` for existing users.
 - ❌ Attaching `addEventListener` to nodes rebuilt by `render()`: they are lost.
 - ❌ Reusing an existing `localStorage` key with a different shape without bumping its version.
+
+
+
+Publishing
+mkdir tte && cd tte
+# create the files from parts 1-4
+git init && git add . && git commit -m "feat: TTE quest tracker, modular blocks 1-20"
+gh repo create tte --public --source=. --push \
+  --description "TTE turns your daily to-do list into a game: complete quests to earn coins and XP, level up, keep streaks alive and unlock badges, then spend the coins on rewards you define yourself. Single-page web app, no build, no server, no account. All data stays in your browser, with JSON export/import."
