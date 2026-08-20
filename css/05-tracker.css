@@ -1,0 +1,51 @@
+/* ═══ BLOC 5 — TRACKER
+   5.1 sections · 5.2 séries · 5.3 milestones · 5.4 graphique · 5.5 badges ═══ */
+
+/* 5.1 */
+.tracker-section { margin-bottom: 24px; }
+.tracker-section-title {
+    font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--text-lighter); margin-bottom: 12px; padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+}
+
+/* 5.2 */
+.streak-card {
+    background: var(--bg-card); border-radius: 12px; padding: 16px 18px;
+    margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between;
+    border: 1px solid var(--border);
+}
+.streak-info { flex: 1; }
+.streak-title { font-size: 14px; color: var(--text-body); }
+.streak-meta { font-size: 11px; color: var(--text-light); margin-top: 3px; }
+.streak-count { font-size: 28px; font-weight: 300; color: var(--gold); min-width: 50px; text-align: right; }
+.streak-unit { font-size: 11px; color: var(--text-lighter); font-weight: 500; }
+
+/* 5.3 */
+.milestone-card {
+    background: var(--bg-card); border-radius: 12px; padding: 18px; margin-bottom: 8px;
+    border: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between;
+}
+.milestone-label { font-size: 13px; color: var(--text-muted); }
+.milestone-value { font-size: 22px; font-weight: 300; color: var(--gold); }
+
+/* 5.4 */
+.graph-card { background: var(--bg-card); border-radius: 12px; padding: 16px; border: 1px solid var(--border); margin-bottom: 8px; }
+.graph-bars { display: flex; align-items: flex-end; height: 100px; gap: 1px; }
+.graph-bar-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; }
+.graph-bar { width: 80%; background: var(--gold); border-radius: 2px 2px 0 0; transition: height 0.3s; min-height: 1px; }
+.graph-bar:hover { background: #d4b85e; }
+.graph-labels { display: flex; justify-content: space-between; margin-top: 6px; font-size: 9px; color: var(--text-light); }
+.graph-info { display: flex; justify-content: space-between; font-size: 11px; color: var(--text-mid); margin-bottom: 8px; }
+
+/* 5.5 */
+.badge-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 8px; }
+.badge-item {
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px;
+    padding: 12px 6px; text-align: center; transition: all 0.3s;
+}
+.badge-item.locked { opacity: 0.3; filter: grayscale(1); }
+.badge-item.unlocked { border-color: var(--gold); }
+.badge-icon { font-size: 28px; line-height: 1; }
+.badge-name { font-size: 10px; font-weight: 600; margin-top: 4px; color: var(--text-body); }
+.badge-desc { font-size: 9px; color: var(--text-light); margin-top: 2px; line-height: 1.3; }
