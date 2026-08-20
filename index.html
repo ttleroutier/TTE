@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>TTE</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="TTE">
+    <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiVFRFIiwic2hvcnRfbmFtZSI6IlRURSIsInN0YXJ0X3VybCI6Ii4iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjZjVmNWYwIiwidGhlbWVfY29sb3IiOiIjZmZmZmZmIn0=">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- ═══ BLOCS 1→7 — CSS (l'ordre définit la cascade) ═══ -->
+    <link rel="stylesheet" href="css/01-theme.css">
+    <link rel="stylesheet" href="css/02-layout.css">
+    <link rel="stylesheet" href="css/03-quests.css">
+    <link rel="stylesheet" href="css/04-shop.css">
+    <link rel="stylesheet" href="css/05-tracker.css">
+    <link rel="stylesheet" href="css/06-forms.css">
+    <link rel="stylesheet" href="css/07-effects.css">
+</head>
+<body>
+
+    <!-- ═══════ BLOC 8.1 — COUCHES DE FOND & BARRE D'ÉTAT ═══════ -->
+    <canvas id="bg-canvas"></canvas>
+    <div class="heat-overlay" id="heat-overlay"></div>
+    <div class="notification" id="notification"></div>
+    <input type="file" id="file-input" accept=".json" onchange="importData(event)">
+
+    <!-- ═══════ BLOC 8.2 — TIMER ═══════ -->
+    <div class="timer-overlay" id="timer-overlay" style="display:none">
+        <div class="t-info">
+            <div class="t-quest" id="t-quest"></div>
+            <div class="t-time" id="t-time">25:00</div>
+        </div>
+        <button class="t-cancel" onclick="cancelTimer()">Stop</button>
+    </div>
+
+    <!-- ═══════ BLOC 8.3 — MODALE ═══════ -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal">
+            <h3 id="modal-title">Modifier</h3>
+            <div id="modal-body"></div>
+            <div class="modal-actions">
+                <button class="btn-cancel" onclick="closeModal()">Annuler</button>
+                <button class="action-btn primary" style="flex:1" onclick="saveModal()">Enregistrer</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════ BLOC 8.4 — APPLICATION ═══════ -->
+    <div class="app-wrap">
+
+        <!-- 8.4a — En-tête : solde, niveau, XP, série -->
+        <div class="header">
+            <h1 id="app-title">TTE</h1>
+            <div class="coins-display" id="coins-display">0.00</div>
+            <div class="coins-label">pieces</div>
+            <div class="player-info">
+                <div class="player-line">
+                    <span class="player-level-text">Niv. <span id="player-level-num">1</span></span>
+                    <span class="player-title" id="player-title">Novice</span>
+                </div>
+                <div class="xp-bar"><div class="xp-fill" id="xp-fill" style="width:0%"></div></div>
+                <div class="xp-text" id="xp-text">0 / 100 XP</div>
+                <div id="streak-badge-wrap" style="text-align:center"></div>
+            </div>
+        </div>
+
+        <!-- 8.5 — Onglets principaux -->
+        <div class="tabs">
+            <div class="tab active" onclick="switchTab('quests')">Quetes</div>
+            <div class="tab" onclick="switchTab('shop')">Boutique</div>
+            <div class="tab" onclick="switchTab('tracker')">Tracker</div>
+            <div class="tab" onclick="switchTab('cosmetics')">Style</div>
+            <div class="tab" onclick="switchTab('settings')">Reglages</div>
+        </div>
+
+        <!-- 8.6 — Pages (contenu injecté par js/10-render.js) -->
+        <div class="content">
+            <div class="page active" id="page-quests">
+                <div id="quest-sub-tabs"></div>
+                <div id="filter-bar" class="filter-bar"></div>
+                <div id="quests-list"></div>
+            </div>
+            <div class="page" id="page-shop"><div id="shop-list"></div></div>
+            <div class="page" id="page-tracker"><div id="tracker-content"></div></div>
+            <div class="page" id="page-cosmetics"><div id="cosmetics-content"></div></div>
+            <div class="page" id="page-settings"><div id="settings-content"></div></div>
+        </div>
+
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         BLOCS 9→20 — JAVASCRIPT
+         ⚠ ORDRE STRICT : portée globale partagée, pas de defer/async
+         ═══════════════════════════════════════════════════════════ -->
+    <script src="js/01-background.js"></script>
+    <script src="js/02-data.js"></script>
+    <script src="js/03-state.js"></script>
+    <script src="js/04-utils.js"></script>
+    <script src="js/05-resets.js"></script>
+    <script src="js/06-audio.js"></script>
+    <script src="js/07-timer.js"></script>
+    <script src="js/08-backup.js"></script>
+    <script src="js/09-modal.js"></script>
+    <script src="js/10-render.js"></script>
+    <script src="js/11-actions.js"></script>
+    <script src="js/12-init.js"></script>
+</body>
+</html>
